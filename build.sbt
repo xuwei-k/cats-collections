@@ -4,7 +4,7 @@ import ReleaseTransformations._
 lazy val buildSettings = Seq(
   organization in Global := "org.typelevel",
   scalaVersion in Global := "2.12.8",
-  crossScalaVersions := Seq("2.11.12", scalaVersion.value, "2.13.0-M5")
+  crossScalaVersions := Seq("2.11.12", scalaVersion.value, "2.13.0")
 )
 
 lazy val `cats-collections` = project.in(file("."))
@@ -90,7 +90,7 @@ lazy val tests = crossProject(JSPlatform, JVMPlatform)
     libraryDependencies ++= Seq(
       "org.typelevel" %%% "cats-testkit" % V.cats % "test",
       "org.typelevel" %%% "cats-laws"    % V.cats % "test",
-      "org.typelevel" %%% "algebra-laws" % V.algebra % "test"
+//      "org.typelevel" %%% "algebra-laws" % V.algebra % "test"
     )
   )
 
@@ -120,8 +120,8 @@ lazy val commonSettings =
   compilerFlags ++ Seq(
     libraryDependencies ++= Seq(
       "org.typelevel" %%% "cats-core" % V.cats,
-      "org.typelevel" %%% "algebra"   % V.algebra,
-      compilerPlugin("org.spire-math"  %% "kind-projector" % "0.9.9")
+//      "org.typelevel" %%% "algebra"   % V.algebra,
+      compilerPlugin("org.typelevel" %% "kind-projector" % "0.10.3")
     ),
     fork in test := true
   )
@@ -223,7 +223,6 @@ lazy val compilerFlags = Seq(
           "-unchecked",                        // Enable additional warnings where generated code depends on assumptions.
           "-Xcheckinit",                       // Wrap field accessors to throw an exception on uninitialized access.
           "-Xfatal-warnings",                  // Fail the compilation if there are any warnings.
-          "-Xfuture",                          // Turn on future language features.
           "-Xlint:adapted-args",               // Warn if an argument list is modified to match the receiver.
           "-Xlint:constant",                   // Evaluation of a constant arithmetic expression results in an error.
           "-Xlint:delayedinit-select",         // Selecting member of DelayedInit.
